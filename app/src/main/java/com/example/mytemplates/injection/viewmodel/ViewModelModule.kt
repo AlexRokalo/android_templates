@@ -2,9 +2,9 @@ package com.example.mytemplates.injection.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.mytemplates.ui.screens.MainViewModel
-import com.example.mytemplates.ui.screens.camera_x.CameraXViewModel
-import com.example.mytemplates.ui.screens.fragment_main.FragmentMainViewModel
+import com.example.mytemplates.ui.screens.activity.MainViewModel
+import com.example.mytemplates.ui.screens.fragment.camera_x.CameraXViewModel
+import com.example.mytemplates.ui.screens.fragment.main.FragmentMainViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap

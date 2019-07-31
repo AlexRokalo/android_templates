@@ -1,4 +1,4 @@
-package com.example.mytemplates.ui.screens.fragment_main
+package com.example.mytemplates.ui.screens.fragment.main
 
 import android.os.Bundle
 import android.view.LayoutInflater

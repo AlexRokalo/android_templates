@@ -1,25 +1,22 @@
-package com.example.mytemplates.ui.screens.camera_x
+package com.example.mytemplates.ui.screens.fragment.camera_x
 
-import android.os.Bundle
-import android.view.View
-import com.example.mytemplates.ui.view.fragment.BaseMvvmFragment
-import com.tbruyelle.rxpermissions2.RxPermissions
 import android.Manifest.permission
 import android.graphics.Matrix
-import android.os.Handler
-import android.os.HandlerThread
+import android.os.Bundle
 import android.util.Log
 import android.util.Rational
 import android.util.Size
 import android.view.LayoutInflater
 import android.view.Surface
+import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.camera.core.*
 import com.codeerow.spirit.mvvm.view.extensions.provideViewModel
 import com.example.mytemplates.R
-import com.example.mytemplates.ui.screens.camera_x.luminosity_analyzer.LuminosityAnalyzer
-import com.example.mytemplates.ui.screens.camera_x.qr_code_analyzer.QrCodeAnalyzer
+import com.example.mytemplates.ui.screens.fragment.camera_x.qr_code_analyzer.QrCodeAnalyzer
+import com.example.mytemplates.ui.view.fragment.BaseMvvmFragment
+import com.tbruyelle.rxpermissions2.RxPermissions
 import kotlinx.android.synthetic.main.fragment_camera_x.*
 import java.io.File
 
@@ -47,7 +44,6 @@ class CameraXFragment : BaseMvvmFragment() {
     }
 
     private fun startCamera() {
-
         // Create configuration object for the viewfinder use case
         val previewConfig = PreviewConfig.Builder().apply {
             setTargetAspectRatio(Rational(1, 1))
@@ -59,12 +55,10 @@ class CameraXFragment : BaseMvvmFragment() {
 
         // Every time the viewfinder is updated, recompute layout
         preview.setOnPreviewOutputUpdateListener {
-
             // To update the SurfaceTexture, we have to remove it and re-add it
             val parent = viewFinder.parent as ViewGroup
             parent.removeView(viewFinder)
             parent.addView(viewFinder, 0)
-
             viewFinder.surfaceTexture = it.surfaceTexture
             updateTransform()
         }
@@ -103,35 +97,13 @@ class CameraXFragment : BaseMvvmFragment() {
                 })
         }
 
-//       // Setup image analysis pipeline that computes average pixel luminance
-//        val analyzerConfig = ImageAnalysisConfig.Builder().apply {
-//            // Use a worker thread for image analysis to prevent glitches
-//            val analyzerThread = HandlerThread(
-//                "LuminosityAnalysis"
-//            ).apply { start() }
-//            setCallbackHandler(Handler(analyzerThread.looper))
-//            // In our analysis, we care more about the latest image than
-//            // analyzing *every* image
-//            setImageReaderMode(
-//                ImageAnalysis.ImageReaderMode.ACQUIRE_LATEST_IMAGE
-//            )
-//        }.build()
-//
-//
-//        // Build the image analysis use case and instantiate our analyzer
-//        // Now don't work and I don't know why :(
-//        // Don't use
-//        val analyzerUseCase = ImageAnalysis(analyzerConfig).apply {
-//            analyzer = LuminosityAnalyzer()
-//        }
-
         val imageAnalysisConfig = ImageAnalysisConfig.Builder()
             .build()
         val imageAnalysis = ImageAnalysis(imageAnalysisConfig)
 
         val qrCodeAnalyzer = QrCodeAnalyzer { qrCodes ->
             qrCodes.forEach {
-                Toast.makeText(requireContext(), "QR Code detected: ${it.rawValue}.", Toast.LENGTH_LONG).show()
+                Toast.makeText(requireContext(), "QR Code detected: ${it.rawValue}.", Toast.LENGTH_SHORT).show()
                 Log.d("MainActivity", "QR Code detected: ${it.rawValue}.")
             }
         }
@@ -144,7 +116,6 @@ class CameraXFragment : BaseMvvmFragment() {
         // version 1.1.0 or higher.
         CameraX.bindToLifecycle(this, preview, imageCapture, imageAnalysis)
     }
-
 
     private fun updateTransform() {
         val matrix = Matrix()

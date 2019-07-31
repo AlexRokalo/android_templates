@@ -1,4 +1,4 @@
-package com.example.mytemplates.ui.screens.camera_x.qr_code_analyzer
+package com.example.mytemplates.ui.screens.fragment.camera_x.qr_code_analyzer
 
 import android.util.Log
 import androidx.camera.core.ImageAnalysis
@@ -12,6 +12,7 @@ import com.google.firebase.ml.vision.common.FirebaseVisionImageMetadata
 class QrCodeAnalyzer(
     private val onQrCodesDetected: (qrCodes: List<FirebaseVisionBarcode>) -> Unit
 ) : ImageAnalysis.Analyzer {
+
     override fun analyze(image: ImageProxy, rotationDegrees: Int) {
         val options = FirebaseVisionBarcodeDetectorOptions.Builder()
             .setBarcodeFormats(FirebaseVisionBarcode.FORMAT_QR_CODE)
@@ -30,7 +31,6 @@ class QrCodeAnalyzer(
                 Log.e("QrCodeAnalyzer", "something went wrong", it)
             }
     }
-
 
     private fun rotationDegreesToFirebaseRotation(rotationDegrees: Int): Int {
         return when (rotationDegrees) {

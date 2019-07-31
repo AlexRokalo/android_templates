@@ -1,4 +1,4 @@
-package com.example.mytemplates.ui.screens
+package com.example.mytemplates.ui.screens.activity
 
 import android.os.Bundle
 import com.codeerow.spirit.aac_navigation.view.AacNavSettings

@@ -1,4 +1,4 @@
-package com.example.mytemplates.ui.screens.camera_x.luminosity_analyzer
+package com.example.mytemplates.ui.screens.fragment.camera_x.luminosity_analyzer
 
 import android.util.Log
 import androidx.camera.core.ImageAnalysis

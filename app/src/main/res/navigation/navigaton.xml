@@ -3,7 +3,7 @@
             xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
             android:id="@+id/navigaton" app:startDestination="@id/fragmentMain" tools:ignore="UnusedNavigation">
     <fragment android:id="@+id/fragmentMain"
-              android:name="com.example.mytemplates.ui.screens.fragment_main.FragmentMain"
+              android:name="com.example.mytemplates.ui.screens.fragment.main.FragmentMain"
               android:label="FragmentMain"
               tools:layout="@layout/fragment_main"
     >
@@ -11,7 +11,7 @@
                 app:enterAnim="@anim/nav_default_enter_anim"/>
     </fragment>
     <fragment android:id="@+id/cameraXFragment"
-              android:name="com.example.mytemplates.ui.screens.camera_x.CameraXFragment"
+              android:name="com.example.mytemplates.ui.screens.fragment.camera_x.CameraXFragment"
               android:label="CameraXFragment"
               tools:layout="@layout/fragment_camera_x"/>
 </navigation>

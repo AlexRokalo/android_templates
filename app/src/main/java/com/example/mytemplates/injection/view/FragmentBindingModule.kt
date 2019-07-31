@@ -1,7 +1,7 @@
 package com.example.mytemplates.injection.view
 
-import com.example.mytemplates.ui.screens.camera_x.CameraXFragment
-import com.example.mytemplates.ui.screens.fragment_main.FragmentMain
+import com.example.mytemplates.ui.screens.fragment.camera_x.CameraXFragment
+import com.example.mytemplates.ui.screens.fragment.main.FragmentMain
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 import qbt.lepta.presentation.injection.PerFragment
